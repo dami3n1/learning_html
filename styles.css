@@ -1,3 +1,8 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
 .flex-container {
     display: flex; /*flex container*/
     flex-direction: row;
@@ -20,4 +25,26 @@
     width: max-content;
     padding: 0px 10px 0px 20px;
     /*display: inline-block;*/ /*side by side*/
+}
+
+header {
+    margin: 0;
+    padding: 0;
+}
+
+
+.header {
+    margin: 0;
+    display: flex;
+    background-color: red;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.header .header-links {
+
+    display: flex;
+    flex-shrink: 0;
+    width: 500px;
+    justify-content: space-around;
 }
