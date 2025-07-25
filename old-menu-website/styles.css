@@ -1,0 +1,23 @@
+.flex-container {
+    display: flex; /*flex container*/
+    flex-direction: row;
+}
+
+.flex-container .menu {
+    flex: 0;
+    background-color: gray;
+    border: 3px solid black;
+    border-radius: 8px; /*round corners*/
+    width: max-content;
+    padding: 0px 10px 0px 20px;
+    /*display: inline-block;*/ /*side by side*/
+}
+
+.menu {
+    background-color: gray;
+    border: 3px solid black;
+    border-radius: 8px; /*round corners*/
+    width: max-content;
+    padding: 0px 10px 0px 20px;
+    /*display: inline-block;*/ /*side by side*/
+}

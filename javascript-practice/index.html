@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="greet-button">Press me</button>
+    <button>dont press me</button>
+    <div id="greeting"></div>
+
+    <script>
+        function add7(number) {
+            return number + 7;
+        }
+
+        function multiply(number1, number2) {
+            return number1 * number2;
+        }
+
+        function capatilize(word) {
+            let letter = word.charAt(0);
+            let replaceLetter = word.replace(letter, letter.toUpperCase())
+            return replaceLetter;
+        }
+
+        function lastLetter(word){
+            wordlength = word.length - 1;
+            lastletter = word.charAt(wordlength)
+            return lastletter;
+        }
+
+        console.log(add7(1));
+        console.log(multiply(5,5));
+        console.log(capatilize("abcd"))
+        console.log(lastLetter("absds"))
+
+    </script>
+
+    <!--<script src="javascript.js"></script>-->
+</body>
+</html>
