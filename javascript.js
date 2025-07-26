@@ -1,61 +1,124 @@
-console.log("Hello! world")
+console.log("Hello World!")
 
-let age = 13;
+let round_number = 0;
+let humanScore = 0;
+let tieScore = 0
+let computerScore = 0;
+let mainhumanChoice = null;
 
-age = 14; // reasign age
+const rock_button = document.querySelector("#rock-button");
+const papper_button = document.querySelector("#paper-button");
+const scissors_button = document.querySelector("#scissors-button");
 
-const pi = 3.14; // will alway stay the 
-// same because its constant
+scissors_button.addEventListener('click', getHumanChoice);
+rock_button.addEventListener('click', getHumanChoice);
+papper_button.addEventListener('click', getHumanChoice);
 
-var age2 = 13; // var is not used as 
-// much because its older but you still might see it
-
-console.log(age)
-
-console.log(age + age2)
-
-age + age2;
-
-console.log(age)
-
-let age3 = age + age2;
-
-console.log(age3)
-
-let a = 1;
-let b = "2"
-
-console.log(a + b)
-
-let name = "dami3n1";
-
-console.log(`hello ${1}`); // ?
-
-console.log(`hello ${"name"}`); // ?
-
-console.log(`hello ${name}`); // ?
-
-const one = "Hello, ";
-const two = "how are you?";
-const joined = `${one}${two}`;
-console.log(joined); // "Hello, how are you?"
-
-const button = document.querySelector("#greet-button");
-
-function greet() {
-  const name = prompt("What is your name?");
-  const greeting = document.querySelector("#greeting");
-  greeting.textContent = `Hello ${name}, nice to see you!`;
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
 }
 
-button.addEventListener("click", greet);
+function getComputerChoice() {
+  let cpu_selected_choice = getRandomInt(3);
+  console.log(`CPU selected "${cpu_selected_choice}".`);
 
-const myString = "123";
-const myNum = Number(myString);
-console.log(typeof myNum);
-
-function favoriteAnimal(animal) {
-    return animal + " is my favorite animal!"
+  return cpu_selected_choice;
 }
 
-console.log(favoriteAnimal('Goat'))
+function getHumanChoice(value) {
+  const selectedValue = value.target.value;
+  console.log(`Player selected "${selectedValue}".`);
+  mainhumanChoice = parseInt(selectedValue);
+  round_number++;
+
+  if(round_number <= 5){
+    player_selected_option_check();
+  }
+  else {
+    round_number = 0;
+    const game_log = document.querySelector("#game-log");
+    game_log.textContent = `GAME ENDED | PLAYER SCORE:${humanScore} | TIES:${tieScore} | CPU SCORE:${computerScore} | SCORES WILL BE RESET`;
+    humanScore = 0;
+    tieScore = 0;
+    computerScore = 0;
+  }
+}
+
+
+function playRound(humanChoice, computerChoice) {
+  let cpu_selected_choice;
+  let human_selected_choice;
+  let quote;
+
+  if (humanChoice == computerChoice){
+    quote = "TIE"
+    tieScore++;
+  }else if (humanChoice == 0 && computerChoice == 1){
+    quote = "CPU wins"
+    computerScore++;
+  }else if (humanChoice == 1 && computerChoice == 0){
+     quote = "Human wins"
+    humanScore++;
+  }else if (humanChoice == 2 && computerChoice == 0) {
+    quote = "CPU wins"
+    computerScore++;
+  }else if (humanChoice == 0 && computerChoice == 2) {
+    quote = "Human wins"
+    humanScore++;
+  }else if (humanChoice == 1 && computerChoice == 2){
+     quote = "CPU wins"
+    computerScore++;
+  }else if (humanChoice == 2 && computerChoice == 1) {
+    quote = "Human wins"
+    humanScore++;
+  }
+
+  switch (humanChoice) {
+    case 0:
+      human_selected_choice = "rock"
+      break;
+    case 1:
+      human_selected_choice = "paper"
+      break;
+    case 2:
+      human_selected_choice = "scissors"
+      break;
+  }
+
+  switch (computerChoice) {
+    case 0:
+      cpu_selected_choice = "rock"
+      break;
+    case 1:
+      cpu_selected_choice = "paper"
+      break;
+    case 2:
+      cpu_selected_choice = "scissors"
+      break;
+  }
+
+  console.log(human_selected_choice);
+  console.log(cpu_selected_choice);
+
+  const game_log = document.querySelector("#game-log");
+  game_log.textContent = `ROUND:${round_number} | You selected: ${human_selected_choice} | CPU seleceted: ${cpu_selected_choice} | ${quote} | PLAYER SCORE:${humanScore} | TIES:${tieScore} | CPU SCORE:${computerScore}`;
+
+
+
+}
+
+function player_selected_option_check() {
+  if (mainhumanChoice != null || mainhumanChoice != undefined) {
+    playRound(mainhumanChoice, getComputerChoice())
+  }
+}
+
+
+function playGame() {
+  playRound(mainhumanChoice, getComputerChoice)
+}
+
+
+
+
+
